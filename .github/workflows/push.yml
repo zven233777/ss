@@ -1,8 +1,9 @@
-- name: ls -a via ssh
-  uses: garygrossgarten/github-action-ssh@release
-  with:
-    command: ls -a
-    host: ${{ secrets.HOST }}
-    username: garygrossgarten
-    passphrase: ${{ secrets.PASSPHRASE }}
-    privateKey: ${{ secrets.PRIVATE_KEY}}
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
